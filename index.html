@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dragon Cart - Order Your Shoes & Bags</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0a;
+    background-image: 
+        radial-gradient(circle at 25% 40%, rgba(255, 80, 40, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 75% 80%, rgba(255, 200, 50, 0.05) 0%, transparent 60%);
+    color: #e8e8e8;
+}
+
+/* DRAGON HEADER */
+header {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(145deg, #0a0505 0%, #1a0a05 50%, #0d0603 100%);
+    border-bottom: 3px solid #ff4400;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "🐉";
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.06;
+    bottom: -80px;
+    left: -50px;
+    pointer-events: none;
+    transform: rotate(-15deg);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #ff6633, #ffaa33, #ff3300, #ff6633);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 68, 0, 0.5);
+    animation: dragonGlow 2s ease-in-out infinite;
+}
+
+@keyframes dragonGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 68, 0, 0.3); }
+    50% { text-shadow: 0 0 25px rgba(255, 68, 0, 0.8); }
+    100% { text-shadow: 0 0 10px rgba(255, 68, 0, 0.3); }
+}
+
+header p {
+    margin: 15px 0;
+    font-size: 18px;
+    color: #cc8844;
+    font-weight: 500;
+}
+
+header p:nth-of-type(2) {
+    font-size: 22px;
+    color: #ffaa44;
+    font-weight: 700;
+    background: rgba(255, 68, 0, 0.15);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 68, 0, 0.4);
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #ff4400, #cc2200);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 68, 0, 0.5);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 68, 0, 0.8);
+}
+
+.section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #ff6633, #ffaa33);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    border-bottom: 3px solid #ff4400;
+    padding-bottom: 10px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product {
+    background: linear-gradient(145deg, #111111, #0a0a0a);
+    border-radius: 20px;
+    width: 280px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 68, 0, 0.3);
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 68, 0, 0.3);
+    border-color: #ff4400;
+}
+
+.product img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.product h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #ffaa66;
+}
+
+.price {
+    color: #ff6633;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.product p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* ORDER BUTTON ON EACH PRODUCT */
+.product-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff4400, #cc2200);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.product-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(255, 68, 0, 0.5);
+}
+
+/* Showroom */
+.showroom {
+    background: linear-gradient(135deg, #0a0505, #1a0a05);
+    border: 1px solid rgba(255, 68, 0, 0.3);
+    border-radius: 40px;
+    margin: 40px 20px;
+    padding: 40px;
+    text-align: center;
+}
+
+.showroom h3 {
+    color: #ff8844;
+    font-size: 28px;
+}
+
+.showroom p {
+    color: #ccaa88;
+    font-size: 18px;
+}
+
+/* Sticky Facebook Order Button (Right Side) */
+.sticky-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff4400, #cc2200);
+    padding: 14px 30px;
+    border-radius: 60px;
+    box-shadow: 0 0 20px rgba(255, 68, 0, 0.6);
+    z-index: 1000;
+    animation: dragonPulse 1.5s ease-in-out infinite;
+}
+
+.sticky-btn a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sticky-btn a::before {
+    content: "🐉 ";
+}
+
+/* NEW: WHATSAPP BUTTON (Left Side) */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    padding: 14px 25px;
+    border-radius: 60px;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+    z-index: 1000;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+}
+
+.whatsapp-btn a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.whatsapp-btn a::before {
+    content: "💬";
+    font-size: 22px;
+}
+
+@keyframes dragonPulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 68, 0, 0.5); }
+    50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 68, 0, 0.9); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 68, 0, 0.5); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 { font-size: 42px; }
+    .section h2 { font-size: 28px; }
+    .product { width: calc(50% - 20px); }
+    .whatsapp-btn { padding: 10px 18px; }
+    .whatsapp-btn a { font-size: 14px; }
+    .sticky-btn { padding: 10px 20px; }
+    .sticky-btn a { font-size: 14px; }
+}
+
+@media (max-width: 500px) {
+    .product { width: 100%; max-width: 300px; }
+    .whatsapp-btn a span { display: none; }
+    .whatsapp-btn a::before { content: "💬 WhatsApp"; font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🐉 DRAGON CART</h1>
+<p>🔥 Unleash Your Inner Dragon 🔥</p>
+<p>🚚 Cash on Delivery + Free Delivery</p>
+</header>
+
+<div class="section">
+<h2>🔥 Best Selling Men</h2>
+<div class="products">
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777122787641-7c3e7734-cb71-4fc2-8e7b-3db21dcda04b.jpg">
+<h3>Men old school</h3>
+<p class="price">1690 BDT</p>
+<p>Size: 41–43</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Men old school - 1690 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777127424512-a28e68bc-4222-445a-b5a2-61f63c4027de.jpg">
+<h3>Black Runner</h3>
+<p class="price">1690 BDT</p>
+<p>Size: 41–43</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Black Runner - 1690 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777122858090-87b8d0c1-4f93-41bd-8d83-892d93612a17.jpg">
+<h3>Urban Street</h3>
+<p class="price">1890 BDT</p>
+<p>Size: 40–43</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Urban Street - 1890 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777128004358-2602710d-1c8a-43fd-ace7-e762df85867e.jpg">
+<h3>Men Army Vives</h3>
+<p class="price">1390 BDT</p>
+<p>Size: 40–43</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Men Army Vives - 1390 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>🔥 Best Selling Women</h2>
+<div class="products">
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777127695921-e1dde05c-600b-42a7-99aa-6a513f81f398.jpg">
+<h3>Women Black Runner</h3>
+<p class="price">1580 BDT</p>
+<p>Size: 37–42</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Women Black Runner - 1580 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777271947881-050aa12a-1dbd-425b-8c8d-b6f837db3613.jpeg">
+<h3>Women Red Runner</h3>
+<p class="price">1580 BDT</p>
+<p>Size: 37–42</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Women Red Runner - 1580 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777273011078-29161ea2-5bc7-4e6b-8fd5-5b3bcc2fd6eb.jpeg">
+<h3>Girls favourite</h3>
+<p class="price">1280 BDT</p>
+<p>Size: 37–42</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Girls favourite - 1280 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777273225448-3814d3dc-4a2c-496b-a184-97010dd0feb3.jpeg">
+<h3>Girls favourite</h3>
+<p class="price">1280 BDT</p>
+<p>Size: 37–42</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Girls favourite - 1280 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777273320577-2684e3ef-51ca-4910-b57e-c797e842a6d9.jpeg">
+<h3>Women classic bag</h3>
+<p class="price">1250 BDT</p>
+<p>Size: Regular</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Women classic bag - 1250 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+<div class="product">
+<img src="https://www.image2url.com/r2/default/images/1777273546084-b08f59e1-80d9-4dda-86a4-fe51c1672192.jpeg">
+<h3>Women classic bag</h3>
+<p class="price">1250 BDT</p>
+<p>Size: Regular</p>
+<button class="product-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform?usp=pp_url&entry.2005620554=Women classic bag - 1250 BDT', '_blank')">🐉 ORDER NOW</button>
+</div>
+
+</div>
+</div>
+
+<div class="showroom">
+<h3>🐉 Dragon's Lair Showroom 🐉</h3>
+<p>Bot-toli Bazar, Borkamta, Debidwar, Comilla</p>
+<p>📞 Call: 017XX-XXXXXX (Message us on WhatsApp first)</p>
+</div>
+
+<!-- Sticky Facebook Order Button (Right Side) -->
+<div class="sticky-btn">
+<a href="#" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSceuZf0zy3vyFmX1jo_XrFU2S769SjD7qV-iIQuVJQG9UMPTA/viewform', '_blank'); return false;">🐉 ORDER NOW</a>
+</div>
+
+<!-- NEW: WHATSAPP BUTTON (Left Side) -->
+<div class="whatsapp-btn">
+    <a href="https://wa.me/8801760616706?text=I%20want%20to%20order%20from%20Dragon%20Cart" target="_blank">
+        💬 Order on WhatsApp
+    </a>
+</div>
+
+</body>
+</html>
